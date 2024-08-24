@@ -96,10 +96,10 @@ DATABASES = {
         'HOST': 'db',  # or the hostname of the MySQL service
         # 'HOST': '127.0.0.1',  # or the hostname of the MySQL service
         'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'charset': 'utf8mb4',
-        },
+        # 'OPTIONS': {
+        #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        #     'charset': 'utf8mb4',
+        # },
     }
 }
 
@@ -161,3 +161,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+import sys
+if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
