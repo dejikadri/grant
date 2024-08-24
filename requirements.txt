@@ -1,6 +1,25 @@
 Django>=4.2.5,<4.3
 djangorestframework>=3.15.0,<3.16
-# djangorestframework-simplejwt>=5.4.0,<5.5
-mysqlclient>=2.2.0,<2.3  # For MySQL
-Pillow>=10.0.1,<10.1  # For image processing
-django-cors-headers>=4.0.0,<4.1  # For CORS handling
+djangorestframework-simplejwt>=5.4.0,<5.5
+mysqlclient>=2.2.0,<2.3
+django-cors-headers>=4.0.0,<4.1  
+pytest>=7.0.0,<7.1 
+pytest-django>=4.4.0,<4.5
+
+# asgiref==3.8.1
+# attrs==24.2.0
+# Django==4.2.15
+# django-cors-headers==4.0.0
+# djangorestframework==3.15.2
+# djangorestframework-simplejwt==5.3.1
+# iniconfig==2.0.0
+# mysqlclient==2.2.4
+# packaging==24.1
+# pluggy==1.5.0
+# py==1.11.0
+# PyJWT==2.9.0
+# pytest==7.0.1
+# pytest-django==4.4.0
+# sqlparse==0.5.1
+# tomli==2.0.1
+# typing_extensions==4.12.2
