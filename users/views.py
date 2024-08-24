@@ -2,7 +2,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -15,8 +14,7 @@ from common import messages as msg
 
 
 class RegisterUser(APIView):
-    # permission_classes = [permissions.IsAuthenticated]
-
+    permission_classes = [permissions.AllowAny]
     def post(self, request):
         data = request.data
         serializer = UserSerializer(data=data)
@@ -34,16 +32,15 @@ class UserLogin(APIView):
         email = data.get('email')
         password = data.get('password')
         
-        # Assume srv.check_user_login returns a user object on success, False otherwise
         user = srv.check_user_login(email, password)
         
         if not user:
             return Response(err.get_error_response('LOGIN_FAILED'), status=status.HTTP_400_BAD_REQUEST)
         
-        # Generate JWT tokens
+        # Generate JWT the tokens
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
-        
+
         return Response({
             'refresh': str(refresh),
             'access': access_token,
