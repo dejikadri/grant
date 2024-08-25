@@ -2,11 +2,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from grants.serializers import GrantApplicationSerializer
 from common import error as err
 
 class ApplyGrant(APIView):
     permission_classes = [permissions.AllowAny]
+    authentication_classes = [JWTAuthentication]
 
     def post(self, request, grant_id):
         uploaded_file = request.FILES.get('document')  
