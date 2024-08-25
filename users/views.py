@@ -7,7 +7,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from rest_framework import status
 from users.serializer import UserSerializer
-from .models import User
 from . import user_service as srv
 from common import error as err
 from common import messages as msg

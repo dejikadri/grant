@@ -1,20 +1,17 @@
 from rest_framework import serializers
-from .models import Grant
+from .models import GrantApplication
 
 
-# create serializer class for the grant model
-
-class GrantSerializer(serializers.ModelSerializer):
+class GrantApplicationSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    grant_name = serializers.CharField()
-    grant_uuid = serializers.CharField()
-    description = serializers.CharField()
-    grant_amount = serializers.DecimalField(max_digits=10, decimal_places=2)
-    application_deadline = serializers.DateField()
-    is_active = serializers.BooleanField()
-    created_at = serializers.DateTimeField(read_only=True)
-    updated_at = serializers.DateTimeField(read_only=True)
+    grant_id = serializers.IntegerField()
+    user_id = serializers.IntegerField()
+    document = serializers.FileField()
+    document_name = serializers.CharField()
+    application_text = serializers.CharField()
+    submission_status = serializers.CharField(default='PENDING_REVEIW')
+
 
     class Meta:
-        model = Grant
-        fields = ['grant_name', 'grant_uuid', 'description', 'grant_amount', 'application_deadline']
+        model = GrantApplication
+        fields = ['id', 'grant_id', 'user_id', 'document_name', 'document', 'application_text', 'submission_status']

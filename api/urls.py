@@ -4,11 +4,11 @@ from users.views import (
     UserLogin,
     Dummy
 )
-from rest_framework_simplejwt.views import TokenObtainPairView
+from grants.views import ApplyGrant
 
 urlpatterns = [
-    path('user/register', RegisterUser.as_view(), name='create_user'),
+    path('user/register', RegisterUser.as_view(), name='register_user'),
     path('user/login', UserLogin.as_view(), name='user_login'),
-    path('user/login2', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('grants/<str:grant_id>/apply', ApplyGrant.as_view(), name='apply_grant'),
     path('dummy', Dummy.as_view(), name='dummy'),
 ]

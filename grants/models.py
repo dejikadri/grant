@@ -22,6 +22,8 @@ class Grant(models.Model):
 class GrantApplication(models.Model):
     grant = models.ForeignKey(Grant, on_delete=models.CASCADE)
     user = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    document = models.FileField(upload_to='documents/')
+    document_name = models.CharField(max_length=255)
     application_text = models.TextField()
     submission_status = models.CharField(max_length=20, default='draft')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -30,12 +32,3 @@ class GrantApplication(models.Model):
     def __str__(self):
         return self.grant.grant_name
     
-class GrantDocument(models.Model):
-    grant_application = models.ForeignKey(GrantApplication, on_delete=models.CASCADE)
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
-    document = models.FileField(upload_to='documents/')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.document.name
